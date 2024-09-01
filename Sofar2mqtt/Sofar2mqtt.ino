@@ -2,7 +2,7 @@
 const char* version = "v3.8";
 
 bool tftModel = true; //true means 2.8" color tft, false for oled version. This is always true for ESP32 devices as we don't use oled device for esp32.
-
+#define TFT_ROTATION 2
 bool calculated = true; //default to pre-calculated values before sending to mqtt
 
 unsigned int screenDimTimer = 30; //dim screen after 30 secs
@@ -2155,7 +2155,7 @@ void doubleResetDetect() {
   if (drd->detectDoubleReset()) {
     if (tftModel) {
       tft.begin();
-      tft.setRotation(2);
+      tft.setRotation(TFT_ROTATION);
     }
     resetConfig();
   }
@@ -2178,7 +2178,7 @@ void setup()
   doubleResetDetect(); //detect factory reset first
   if (tftModel) {
     tft.begin();
-    tft.setRotation(2);
+    tft.setRotation(TFT_ROTATION);
     analogWrite(TFT_LED, 32); //PWM on led pin to dim screen
     tft.fillScreen(ILI9341_CYAN);
     tft.fillScreen(ILI9341_BLACK);
@@ -2186,7 +2186,7 @@ void setup()
     tft.setTextColor(ILI9341_WHITE, ILI9341_BLACK); // White on black
     tft.println("Sofar2mqtt starting...");
     ts.begin();
-    ts.setRotation(1);
+    ts.setRotation(TFT_ROTATION);
 
   } else {
     //Turn on the OLED
