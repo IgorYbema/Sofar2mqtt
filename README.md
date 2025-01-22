@@ -80,6 +80,17 @@ Add a few more libraries using the Manage Libraries menu:
 
 (Even if you are not using the OLED or TFT screen, you should install the libraries or it will not compile.)
 
+If using ESP32C3 board from tindie you should change the pins in file
+%userprofile%\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.0.0-alpha3\variants\esp32c3\pins_arduino.h
+Or in PlatformIo
+%HOMEPATH%/.platformio\packages\framework-arduinoespressif32\variants\esp32c3\pins_arduino.h
+
+To:
+static const uint8_t SS = 1;
+static const uint8_t MOSI = 7;
+static const uint8_t MISO = 2;
+static const uint8_t SCK = 6;
+
 ...and upload.
 
 Run it on the desktop, not connected to your invertor, to test that wifi and mqtt are connected and see some messages in the serial monitor.
